@@ -1,0 +1,7 @@
+# gta_sa.exe is a 32-bit process, so the DLL must be i686.
+# crt-static removes the dependency on vcruntime140.dll.
+[build]
+target = "i686-pc-windows-msvc"
+
+[target.i686-pc-windows-msvc]
+rustflags = ["-C", "target-feature=+crt-static"]

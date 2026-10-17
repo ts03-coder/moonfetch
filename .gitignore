@@ -1,0 +1,4 @@
+/target
+tests/luahost.exe
+tests/*.pdb
+*_vs_copas.txt

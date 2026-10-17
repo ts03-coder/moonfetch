@@ -1,0 +1,21 @@
+[package]
+name = "moonfetch"
+version = "0.1.0"
+edition = "2021"
+description = "Non-blocking HTTP client for MoonLoader Lua scripts (C ABI, used via LuaJIT FFI)"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# native-tls -> SChannel on Windows: no C build step, small DLL, uses system cert store
+ureq = { version = "2.12", default-features = false, features = ["native-tls", "gzip"] }
+native-tls = "0.2"
+
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+strip = true
+# panic = "unwind" (default) is intentional: worker panics are caught and turned into errors
